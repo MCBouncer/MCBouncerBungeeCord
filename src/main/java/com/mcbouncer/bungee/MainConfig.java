@@ -31,6 +31,12 @@ public class MainConfig extends Config {
     @Comment("If no ban message is supplied, this is used")
     public String defaultBanMessage = "Banned for rule violation.";
     
+    @Comment("Append a link for the user to appeal")
+    public Boolean appendAppealURL = false;
+    
+    @Comment("Appeal URL")
+    public String appealURL = "yourdomain.com/appeal";
+    
     @Comment("If a user has more bans than stated they will not be allowed in. (-1 Turns this feature off)")
     public Integer numBansDisallow = -1;
     
