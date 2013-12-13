@@ -1,7 +1,13 @@
 package com.mcbouncer.bungee;
 
 import com.mcbouncer.api.MCBouncerAPI;
-import com.mcbouncer.bungee.command.*;
+import com.mcbouncer.bungee.command.AddnoteCommand;
+import com.mcbouncer.bungee.command.AddgnoteCommand;
+import com.mcbouncer.bungee.command.BanCommand;
+import com.mcbouncer.bungee.command.KickCommand;
+import com.mcbouncer.bungee.command.LookupCommand;
+import com.mcbouncer.bungee.command.RemovenoteCommand;
+import com.mcbouncer.bungee.command.UnbanCommand;
 import com.mcbouncer.bungee.listener.ProxiedPlayerListener;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
