@@ -1,0 +1,6 @@
+apikey: REPLACE
+defaultKickMessage: Kicked by an admin.
+defaultBanMessage: Banned for rule violation.
+numBansDisallow: -1
+showBanMessages: false
+showNoteMessages: false

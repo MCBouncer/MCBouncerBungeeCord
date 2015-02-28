@@ -1,40 +1,126 @@
 package com.mcbouncer.bungee;
 
-import java.io.File;
-import java.util.logging.Level;
-import net.craftminecraft.bungee.bungeeyaml.bukkitapi.InvalidConfigurationException;
-import net.craftminecraft.bungee.bungeeyaml.supereasyconfig.Comment;
-import net.craftminecraft.bungee.bungeeyaml.supereasyconfig.Config;
+import org.yaml.snakeyaml.Yaml;
 
-public class MainConfig extends Config {
-    
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.LinkedHashMap;
+import java.io.OutputStream;
+import java.util.Map;
+import java.util.logging.Level;
+
+// Most of the code in this class is based off of https://github.com/KittehOrg/SQLBans/blob/master/src/main/java/org/kitteh/sqlbans/Config.java
+
+@SuppressWarnings("unchecked")
+public class MainConfig {
+
+    private Map<String, Object> map = new LinkedHashMap<String, Object>();
+
     private MCBouncer plugin;
-    private File config;
-    
+
     public MainConfig(MCBouncer plugin) {
         this.plugin = plugin;
-        CONFIG_FILE = new File(plugin.getDataFolder(), "config.yml");
-        CONFIG_HEADER = "MCBouncer Config file";
+        final File configFile = new File(plugin.getDataFolder(), "config.yml");
+        if (!configFile.exists()) {
+            try {
+                InputStream is = plugin.getResourceAsStream("config.yml");
+                File dataFolder = plugin.getDataFolder();
+                dataFolder.mkdirs();
+                OutputStream os = new FileOutputStream(configFile);
+                final byte[] buf = new byte[1024];
+                int len;
+                while ((len = is.read(buf)) > 0) {
+                    os.write(buf, 0, len);
+                }
+            } catch (final Exception e) {
+                plugin.getLogger().log(Level.SEVERE, "Could not save default config", e);
+            }
+        }
         try {
-            this.init();
-        } catch (InvalidConfigurationException e) {
+            this.map = (Map<String, Object>) new Yaml().load(new FileInputStream(configFile));
+            this.apikey = getString("apikey", this.apikey);
+            if (this.apikey.equalsIgnoreCase("REPLACE")) {
+                plugin.getLogger().log(Level.SEVERE, "APIKey is set to the default, please set the apikey in the plugin config file");
+            }
+            this.defaultKickMessage = getString("defaultKickMessage", this.defaultKickMessage);
+            this.numBansDisallow = getInt("numBansDisallow", this.numBansDisallow);
+            this.showBanMessages = getBoolean("showBanMessages");
+        } catch (final Exception e) {
             plugin.getLogger().log(Level.SEVERE, "Could not load config!", e);
         }
     }
-    
-    @Comment("MCBouncer API Key")
+
     public String apikey = "REPLACE";
-    
-    @Comment("If no kick message is supplied, this is used")
+
     public String defaultKickMessage = "Kicked by an admin.";
-    
-    @Comment("If no ban message is supplied, this is used")
+
     public String defaultBanMessage = "Banned for rule violation.";
-    
-    @Comment("If a user has more bans than stated they will not be allowed in. (-1 Turns this feature off)")
+
     public Integer numBansDisallow = -1;
-    
-    @Comment("Whether or not to show messgaes to all the users on the server when a user is banned.")
+
     public Boolean showBanMessages = false;
-    
+
+
+
+    Object get(String string) {
+        try {
+            return this.get(string, this.map);
+        } catch (final Exception e) {
+            return null;
+        }
+    }
+
+    int getInt(String string) {
+        return getInt(string, 0);
+    }
+
+    int getInt(String string, Integer def) {
+        try {
+            final String s = this.get(string).toString();
+            try {
+                return Integer.parseInt(s);
+            } catch (final NumberFormatException e) {
+                return def;
+            }
+        } catch (final Exception e) {
+            return def;
+        }
+    }
+
+    String getString(String string) {
+        final Object o = this.get(string);
+        if (o instanceof String) {
+            return (String) o;
+        }
+        return null;
+    }
+
+    String getString(String string, String def) {
+        final String result = this.getString(string);
+        if (result == null) {
+            return def;
+        }
+        return result;
+    }
+
+    Boolean getBoolean(String string) {
+        final String s = this.get(string).toString();
+        return Boolean.parseBoolean(s);
+    }
+
+    private Object get(String string, Map<String, Object> map) {
+        if (string.contains(".") && (string.indexOf(".") != (string.length() - 1))) {
+            final Object o = map.get(string.substring(0, string.indexOf(".")));
+            if (o instanceof Map) {
+                return this.get(string.substring(string.indexOf(".") + 1), (Map<String, Object>) o);
+            } else {
+                return null;
+            }
+        }
+        return map.get(string);
+    }
+
 }
