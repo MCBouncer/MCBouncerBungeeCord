@@ -4,10 +4,6 @@
 
 MCBouncer for BungeeCord is an implementation of the Bukkit MCBouncer plugin for BungeeCord
 
-## Requirements ##
-
-- [BungeeYaml](http://www.spigotmc.org/resources/bungeeyaml.14/) also needs to be in your BungeeCord Plugins folder
-
 ## Commands ##
 
 - /ban \<user\> [reason]
@@ -19,6 +15,10 @@ MCBouncer for BungeeCord is an implementation of the Bukkit MCBouncer plugin for
 - mcbouncer.mod
 
 ## Change Log ##
+
+### Version 1.1 ###
+
+- Removed the requirement of BungeeYAML (No longer maintained)
 
 ### Version 1.0 ###
 
