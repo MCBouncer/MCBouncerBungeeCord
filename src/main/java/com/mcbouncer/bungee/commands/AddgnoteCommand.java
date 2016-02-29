@@ -1,18 +1,18 @@
-package com.mcbouncer.bungee.command;
+package com.mcbouncer.bungee.commands;
 
-import com.mcbouncer.bungee.MCBouncer;
+import com.mcbouncer.bungee.MCBouncerBungeeCord;
 import com.mcbouncer.exception.APIException;
 import com.mcbouncer.exception.NetworkException;
-import com.mcbouncer.util.MiscUtils;
+import com.mcbouncer.util.Misc;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.plugin.Command;
 
 public class AddgnoteCommand extends Command{
 
-    MCBouncer plugin;
+    MCBouncerBungeeCord plugin;
 
-    public AddgnoteCommand(MCBouncer plugin) {
+    public AddgnoteCommand(MCBouncerBungeeCord plugin) {
         super ("addgnote", null, "addglobalnote");
         this.plugin = plugin;
     }

@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 import java.io.OutputStream;
 import java.util.Map;
@@ -19,9 +18,9 @@ public class MainConfig {
 
     private Map<String, Object> map = new LinkedHashMap<String, Object>();
 
-    private MCBouncer plugin;
+    private MCBouncerBungeeCord plugin;
 
-    public MainConfig(MCBouncer plugin) {
+    public MainConfig(MCBouncerBungeeCord plugin) {
         this.plugin = plugin;
         final File configFile = new File(plugin.getDataFolder(), "config.yml");
         if (!configFile.exists()) {

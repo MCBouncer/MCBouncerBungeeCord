@@ -1,6 +1,6 @@
-package com.mcbouncer.bungee.command;
+package com.mcbouncer.bungee.commands;
 
-import com.mcbouncer.bungee.MCBouncer;
+import com.mcbouncer.bungee.MCBouncerBungeeCord;
 import com.mcbouncer.exception.APIException;
 import com.mcbouncer.exception.NetworkException;
 import com.mcbouncer.util.MiscUtils;
@@ -10,9 +10,9 @@ import net.md_5.bungee.api.plugin.Command;
 
 public class AddnoteCommand extends Command {
 
-    MCBouncer plugin;
+    MCBouncerBungeeCord plugin;
 
-    public AddnoteCommand(MCBouncer plugin) {
+    public AddnoteCommand(MCBouncerBungeeCord plugin) {
         super ("addnote");
         this.plugin = plugin;
     }

@@ -1,7 +1,7 @@
 
 package com.mcbouncer.bungee.listener;
 
-import com.mcbouncer.bungee.MCBouncer;
+import com.mcbouncer.bungee.MCBouncerBungeeCord;
 import com.mcbouncer.exception.APIException;
 import com.mcbouncer.exception.NetworkException;
 import java.util.logging.Level;
@@ -11,9 +11,9 @@ import net.md_5.bungee.event.EventHandler;
 
 public class ProxiedPlayerListener implements Listener {
 
-    private MCBouncer plugin;
+    private MCBouncerBungeeCord plugin;
     
-    public ProxiedPlayerListener(MCBouncer plugin) {
+    public ProxiedPlayerListener(MCBouncerBungeeCord plugin) {
         this.plugin = plugin;
     }
     

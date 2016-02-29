@@ -1,6 +1,6 @@
-package com.mcbouncer.bungee.command;
+package com.mcbouncer.bungee.commands;
 
-import com.mcbouncer.bungee.MCBouncer;
+import com.mcbouncer.bungee.MCBouncerBungeeCord;
 import com.mcbouncer.exception.APIException;
 import com.mcbouncer.exception.NetworkException;
 import net.md_5.bungee.api.ChatColor;
@@ -10,9 +10,9 @@ import net.md_5.bungee.api.plugin.Command;
 
 public class UnbanCommand extends Command {
 
-    MCBouncer plugin;
+    MCBouncerBungeeCord plugin;
     
-    public UnbanCommand(MCBouncer plugin) {
+    public UnbanCommand(MCBouncerBungeeCord plugin) {
         super("unban");
         this.plugin = plugin;
     }

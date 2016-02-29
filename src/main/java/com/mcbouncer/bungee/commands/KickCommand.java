@@ -1,6 +1,6 @@
-package com.mcbouncer.bungee.command;
+package com.mcbouncer.bungee.commands;
 
-import com.mcbouncer.bungee.MCBouncer;
+import com.mcbouncer.bungee.MCBouncerBungeeCord;
 import com.mcbouncer.util.MiscUtils;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
@@ -9,9 +9,9 @@ import net.md_5.bungee.api.plugin.Command;
 
 public class KickCommand extends Command {
 
-    MCBouncer plugin;
+    MCBouncerBungeeCord plugin;
     
-    public KickCommand(MCBouncer plugin) {
+    public KickCommand(MCBouncerBungeeCord plugin) {
         super("kick");
         this.plugin = plugin;
     }

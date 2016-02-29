@@ -1,8 +1,8 @@
-package com.mcbouncer.bungee.command;
+package com.mcbouncer.bungee.commands;
 
 import com.mcbouncer.api.UserBan;
 import com.mcbouncer.api.UserNote;
-import com.mcbouncer.bungee.MCBouncer;
+import com.mcbouncer.bungee.MCBouncerBungeeCord;
 import com.mcbouncer.exception.APIException;
 import com.mcbouncer.exception.NetworkException;
 import java.util.List;
@@ -13,9 +13,9 @@ import net.md_5.bungee.api.plugin.Command;
 
 public class LookupCommand extends Command {
 
-    MCBouncer plugin;
+    MCBouncerBungeeCord plugin;
     
-    public LookupCommand(MCBouncer plugin) {
+    public LookupCommand(MCBouncerBungeeCord plugin) {
         super("lookup");
         this.plugin = plugin;
     }

@@ -1,4 +1,4 @@
 name: MCBouncer
-main: com.mcbouncer.bungee.MCBouncer
+main: com.mcbouncer.bungee.MCBouncerBungeeCord
 version: ${pom.version}-${build.number}
 author: Deaygo

@@ -1,6 +1,6 @@
-package com.mcbouncer.bungee.command;
+package com.mcbouncer.bungee.commands;
 
-import com.mcbouncer.bungee.MCBouncer;
+import com.mcbouncer.bungee.MCBouncerBungeeCord;
 import com.mcbouncer.exception.APIException;
 import com.mcbouncer.exception.NetworkException;
 import net.md_5.bungee.api.ChatColor;
@@ -9,9 +9,9 @@ import net.md_5.bungee.api.plugin.Command;
 
 public class RemovenoteCommand extends Command {
 
-    MCBouncer plugin;
+    MCBouncerBungeeCord plugin;
 
-    public RemovenoteCommand(MCBouncer plugin) {
+    public RemovenoteCommand(MCBouncerBungeeCord plugin) {
         super("removenote", null, "delnote");
         this.plugin = plugin;
     }

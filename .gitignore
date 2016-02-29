@@ -1,2 +1,9 @@
-target/
-*.bak
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+.idea/
+*.iml
+/target/
