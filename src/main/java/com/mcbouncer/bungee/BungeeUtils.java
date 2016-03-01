@@ -1,9 +1,4 @@
 package com.mcbouncer.bungee;
-
-import com.mcbouncer.Perm;
-import com.mcbouncer.api.MCBouncerCommandSender;
-import net.md_5.bungee.api.CommandSender;
-
 /*
  * MCBouncerBungee
  * Copyright 2012-2014 Deaygo Jarkko
@@ -20,20 +15,19 @@ import net.md_5.bungee.api.CommandSender;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-public class BungeeCommandSender implements MCBouncerCommandSender {
-    CommandSender sender;
-    public BungeeCommandSender(CommandSender sender) {
-        this.sender = sender;
-    }
-    public String getName() {
-        return sender.getName();
-    }
 
-    public Boolean hasPermission(Perm perm) {
-        return sender.hasPermission(perm.toString());
-    }
+import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 
-    public void sendMessage(String s) {
-        sender.sendMessage(s);
+public class BungeeUtils {
+    public static BungeeCommandSender convertCommandSender(CommandSender commandSender) {
+        BungeeCommandSender cs;
+        if (commandSender instanceof ProxiedPlayer) {
+            cs = new BungeePlayer((ProxiedPlayer)commandSender);
+        }  else {
+            cs = new BungeeCommandSender(commandSender);
+        }
+
+        return cs;
     }
 }

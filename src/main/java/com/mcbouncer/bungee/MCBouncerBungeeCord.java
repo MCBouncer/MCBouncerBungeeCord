@@ -4,14 +4,11 @@ import com.mcbouncer.MCBouncer;
 import com.mcbouncer.YamlConfig;
 import com.mcbouncer.api.MCBouncerImplementation;
 import com.mcbouncer.api.MCBouncerPlayer;
-import com.mcbouncer.bungee.commands.AddnoteCommand;
-import com.mcbouncer.bungee.commands.AddgnoteCommand;
-import com.mcbouncer.bungee.commands.BanCommand;
-import com.mcbouncer.bungee.commands.KickCommand;
-import com.mcbouncer.bungee.commands.LookupCommand;
-import com.mcbouncer.bungee.commands.RemovenoteCommand;
-import com.mcbouncer.bungee.commands.UnbanCommand;
+import com.mcbouncer.bungee.commands.BungeeBanCommand;
+import com.mcbouncer.bungee.commands.BungeeGlobalNoteCommand;
 import com.mcbouncer.bungee.listener.ProxiedPlayerListener;
+import com.mcbouncer.commands.BanCommand;
+import com.mcbouncer.commands.GlobalNoteCommand;
 import com.mcbouncer.exceptions.MCBouncerException;
 import net.md_5.bungee.api.plugin.Plugin;
 
@@ -26,13 +23,13 @@ public class MCBouncerBungeeCord extends Plugin implements MCBouncerImplementati
     public void onEnable() {
         this.mcbouncer = new MCBouncer(this, new YamlConfig(this));
         getProxy().getPluginManager().registerListener(this, new ProxiedPlayerListener(this));
-        getProxy().getPluginManager().registerCommand(this, new AddgnoteCommand(this));
-        getProxy().getPluginManager().registerCommand(this, new AddnoteCommand(this));
-        getProxy().getPluginManager().registerCommand(this, new BanCommand(this));
-        getProxy().getPluginManager().registerCommand(this, new KickCommand(this));
-        getProxy().getPluginManager().registerCommand(this, new LookupCommand(this));
-        getProxy().getPluginManager().registerCommand(this, new RemovenoteCommand(this));
-        getProxy().getPluginManager().registerCommand(this, new UnbanCommand(this));
+        getProxy().getPluginManager().registerCommand(this, new BungeeGlobalNoteCommand(this, new GlobalNoteCommand(this)));
+        //getProxy().getPluginManager().registerCommand(this, new AddnoteCommand(this));
+        getProxy().getPluginManager().registerCommand(this, new BungeeBanCommand(this, new BanCommand(this)));
+        //getProxy().getPluginManager().registerCommand(this, new KickCommand(this));
+        //getProxy().getPluginManager().registerCommand(this, new LookupCommand(this));
+        //getProxy().getPluginManager().registerCommand(this, new RemovenoteCommand(this));
+        //getProxy().getPluginManager().registerCommand(this, new UnbanCommand(this));
         super.onEnable();
 
         try {
@@ -52,11 +49,11 @@ public class MCBouncerBungeeCord extends Plugin implements MCBouncerImplementati
     }
 
     public MCBouncerPlayer getOfflinePlayer(String s) {
-        return getProxy().getPlayer(s);
+        return null;
     }
 
     public MCBouncerPlayer[] getOnlinePlayers() {
-        return getProxy().getPlayers();
+        return null;
     }
 
     public String getVersion() {
