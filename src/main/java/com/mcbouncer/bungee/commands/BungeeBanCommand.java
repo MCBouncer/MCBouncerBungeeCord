@@ -1,7 +1,7 @@
 package com.mcbouncer.bungee.commands;
 /*
  * MCBouncerBungee
- * Copyright 2012-2014 Deaygo Jarkko
+ * Copyright 2012-2016 Deaygo Jarkko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@ package com.mcbouncer.bungee.commands;
  * limitations under the License.
  */
 
-import com.mcbouncer.api.MCBouncerImplementation;
+import com.mcbouncer.bungee.BungeeUtils;
 import com.mcbouncer.commands.BanCommand;
 import com.mcbouncer.commands.GlobalNoteCommand;
 import net.md_5.bungee.api.CommandSender;
@@ -24,17 +24,15 @@ import net.md_5.bungee.api.plugin.Command;
 
 public class BungeeBanCommand extends Command {
     private BanCommand banCommand;
-    private MCBouncerImplementation impl;
 
-    public BungeeBanCommand(MCBouncerImplementation impl, BanCommand banCommand) {
+    public BungeeBanCommand(BanCommand banCommand) {
         super(banCommand.getCommandName(), banCommand.getRequiredPermission().toString(), banCommand.getAliases());
         this.banCommand = banCommand;
-        this.impl = impl;
     }
 
 
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
-
+        this.banCommand.processCommand(BungeeUtils.convertCommandSender(commandSender), strings);
     }
 }

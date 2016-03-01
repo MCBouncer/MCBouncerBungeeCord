@@ -17,21 +17,21 @@ package com.mcbouncer.bungee.commands;
  */
 
 import com.mcbouncer.bungee.BungeeUtils;
-import com.mcbouncer.commands.GlobalNoteCommand;
+import com.mcbouncer.commands.UnbanCommand;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.plugin.Command;
 
-public class BungeeGlobalNoteCommand extends Command {
-    private GlobalNoteCommand globalNoteCommand;
+public class BungeeUnbanCommand extends Command {
+    private UnbanCommand unbanCommand;
 
-    public BungeeGlobalNoteCommand(GlobalNoteCommand globalNoteCommand) {
-        super(globalNoteCommand.getCommandName(), globalNoteCommand.getRequiredPermission().toString(), globalNoteCommand.getAliases());
-        this.globalNoteCommand = globalNoteCommand;
+    public BungeeUnbanCommand(UnbanCommand unbanCommand) {
+        super(unbanCommand.getCommandName(), unbanCommand.getRequiredPermission().toString(), unbanCommand.getAliases());
+        this.unbanCommand = unbanCommand;
     }
 
 
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
-        this.globalNoteCommand.processCommand(BungeeUtils.convertCommandSender(commandSender), strings);
+        this.unbanCommand.processCommand(BungeeUtils.convertCommandSender(commandSender), strings);
     }
 }

@@ -1,4 +1,4 @@
-package com.mcbouncer.bungee;
+package com.mcbouncer.bungee.commands;
 /*
  * MCBouncerBungee
  * Copyright 2012-2016 Deaygo Jarkko
@@ -16,18 +16,22 @@ package com.mcbouncer.bungee;
  * limitations under the License.
  */
 
+import com.mcbouncer.bungee.BungeeUtils;
+import com.mcbouncer.commands.NoteCommand;
 import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.plugin.Command;
 
-public class BungeeUtils {
-    public static BungeeCommandSender convertCommandSender(CommandSender commandSender) {
-        BungeeCommandSender cs;
-        if (commandSender instanceof ProxiedPlayer) {
-            cs = new BungeePlayer((ProxiedPlayer)commandSender);
-        }  else {
-            cs = new BungeeCommandSender(commandSender);
-        }
+public class BungeeNoteCommand extends Command {
+    private NoteCommand noteCommand;
 
-        return cs;
+    public BungeeNoteCommand(NoteCommand noteCommand) {
+        super(noteCommand.getCommandName(), noteCommand.getRequiredPermission().toString(), noteCommand.getAliases());
+        this.noteCommand = noteCommand;
+    }
+
+
+    @Override
+    public void execute(CommandSender commandSender, String[] strings) {
+        this.noteCommand.processCommand(BungeeUtils.convertCommandSender(commandSender), strings);
     }
 }

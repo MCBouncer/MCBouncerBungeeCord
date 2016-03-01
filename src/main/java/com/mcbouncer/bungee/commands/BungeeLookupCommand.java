@@ -17,21 +17,21 @@ package com.mcbouncer.bungee.commands;
  */
 
 import com.mcbouncer.bungee.BungeeUtils;
-import com.mcbouncer.commands.GlobalNoteCommand;
+import com.mcbouncer.commands.LookupCommand;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.plugin.Command;
 
-public class BungeeGlobalNoteCommand extends Command {
-    private GlobalNoteCommand globalNoteCommand;
+public class BungeeLookupCommand extends Command {
+    private LookupCommand lookupCommand;
 
-    public BungeeGlobalNoteCommand(GlobalNoteCommand globalNoteCommand) {
-        super(globalNoteCommand.getCommandName(), globalNoteCommand.getRequiredPermission().toString(), globalNoteCommand.getAliases());
-        this.globalNoteCommand = globalNoteCommand;
+    public BungeeLookupCommand(LookupCommand lookupCommand) {
+        super(lookupCommand.getCommandName(), lookupCommand.getRequiredPermission().toString(), lookupCommand.getAliases());
+        this.lookupCommand = lookupCommand;
     }
 
 
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
-        this.globalNoteCommand.processCommand(BungeeUtils.convertCommandSender(commandSender), strings);
+        this.lookupCommand.processCommand(BungeeUtils.convertCommandSender(commandSender), strings);
     }
 }
