@@ -8,19 +8,18 @@ import com.mcbouncer.bungee.commands.*;
 import com.mcbouncer.bungee.listener.ProxiedPlayerListener;
 import com.mcbouncer.commands.*;
 import com.mcbouncer.exceptions.MCBouncerException;
+import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Plugin;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.logging.Level;
 
 public class MCBouncerBungeeCord extends Plugin implements MCBouncerImplementation {
 
     public MCBouncer mcbouncer;
-    public MainConfig config;
-    
+
     @Override
     public void onEnable() {
         this.mcbouncer = new MCBouncer(this, new YamlConfig(this));
@@ -71,10 +70,15 @@ public class MCBouncerBungeeCord extends Plugin implements MCBouncerImplementati
     }
 
     public void broadcast(String permission, String message) {
+        for (ProxiedPlayer p : getProxy().getPlayers()) {
+            if (p.hasPermission(permission)) {
+                p.sendMessage(ChatMessageType.SYSTEM, BungeeUtils.translateMessage(message));
+            }
+        }
     }
 
     public void broadcast(String message) {
-
+        getProxy().broadcast(BungeeUtils.translateMessage(message));
     }
 
     public MCBouncer getMCBouncerPlugin() {

@@ -34,6 +34,6 @@ public class BungeeCommandSender implements MCBouncerCommandSender {
     }
 
     public void sendMessage(String s) {
-        sender.sendMessage(s);
+        sender.sendMessage(BungeeUtils.translateMessage(s));
     }
 }

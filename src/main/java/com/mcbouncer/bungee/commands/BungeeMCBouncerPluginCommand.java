@@ -25,13 +25,15 @@ public class BungeeMCBouncerPluginCommand extends Command {
     private MCBouncerPluginCommand mcbouncerPluginCommand;
 
     public BungeeMCBouncerPluginCommand(MCBouncerPluginCommand mcbouncerPluginCommand) {
-        super(mcbouncerPluginCommand.getCommandName(), mcbouncerPluginCommand.getRequiredPermission().toString(), mcbouncerPluginCommand.getAliases());
+        super(mcbouncerPluginCommand.getCommandName(), mcbouncerPluginCommand.getRequiredPermission()==null?null:mcbouncerPluginCommand.getRequiredPermission().toString(), mcbouncerPluginCommand.getAliases());
         this.mcbouncerPluginCommand = mcbouncerPluginCommand;
     }
 
 
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
-        this.mcbouncerPluginCommand.processCommand(BungeeUtils.convertCommandSender(commandSender), strings);
+        if (!this.mcbouncerPluginCommand.processCommand(BungeeUtils.convertCommandSender(commandSender), strings)) {
+            // TODO: Usage message
+        }
     }
 }

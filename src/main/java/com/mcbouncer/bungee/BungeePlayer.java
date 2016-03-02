@@ -17,8 +17,6 @@ package com.mcbouncer.bungee;
  */
 
 import com.mcbouncer.api.MCBouncerPlayer;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.net.InetAddress;
@@ -34,7 +32,7 @@ public class BungeePlayer extends BungeeCommandSender implements MCBouncerPlayer
     }
 
     public void kick(String s) {
-        this.player.disconnect(new TextComponent(s));
+        this.player.disconnect(BungeeUtils.translateMessage(s));
     }
 
     public UUID getUniqueID() {
